@@ -13,9 +13,17 @@ class Api::V1::InvoiceItemsController < ApplicationController
     respond_with InvoiceItem.find_by(search_params)
   end
 
+  def find_all
+    respond_with InvoiceItem.where(search_params)
+  end
+
+  def random
+    respond_with InvoiceItem.order("RANDOM()").first
+  end
+
   private
 
   def search_params
-    params.permit(:item_id, :invoice_id, :unit_price, :quantity)
+    params.permit(:id, :item_id, :invoice_id, :unit_price, :quantity, :created_at, :updated_at)
   end
 end

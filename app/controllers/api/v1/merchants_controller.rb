@@ -13,9 +13,17 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find_by(search_params)
   end
 
+  def find_all
+    respond_with Merchant.where(search_params)
+  end
+
+  def random
+    respond_with Merchant.order("RANDOM()").first
+  end
+
   private
 
   def search_params
-    params.permit(:name)
+    params.permit(:id, :name, :created_at, :updated_at)
   end
 end
