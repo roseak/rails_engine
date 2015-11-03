@@ -6,7 +6,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    respond_with Item.find(params[:id])
+    respond_with Item.find_by(search_params)
   end
 
   def find
@@ -21,6 +21,13 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.order("RANDOM()").first
   end
 
+  def invoice_items
+    respond_with Item.find_by(search_params).invoice_items
+  end
+
+  def merchant
+    respond_with Item.find_by(search_params).merchant
+  end
 
   private
 
