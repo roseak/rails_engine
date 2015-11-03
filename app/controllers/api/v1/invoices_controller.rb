@@ -8,4 +8,22 @@ class Api::V1::InvoicesController < ApplicationController
   def show
     respond_with Invoice.find(params[:id])
   end
+
+  def find
+    respond_wth Invoice.find_by(search_params)
+  end
+
+  def find_all
+    respond_with Invoice.where(search_params)
+  end
+
+  def random
+    respond_with Invoice.order("RANDOM()").first
+  end
+
+  private
+
+  def search_params
+    params.permit(:id, :customer_id, :merchant_id, :status, :created_at, :updated_at)
+  end
 end
