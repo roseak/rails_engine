@@ -24,4 +24,6 @@ end
 group :test do
   gem 'simplecov'
   gem 'minitest-reporters'
+  gem 'faker'
+  gem 'factory_girl_rails', '~> 4.0'
 end
