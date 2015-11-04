@@ -6,4 +6,8 @@ class Item < ActiveRecord::Base
   def unit_price_to_dollars
     self.unit_price = self.unit_price/100
   end
+
+  def self.most_revenue(params)
+    InvoiceItem.successful.group(:item).sum("quantity * unit_price").sort_by(&:last).last(params[:quantity].to_i).reverse.map(&:first)
+  end
 end
