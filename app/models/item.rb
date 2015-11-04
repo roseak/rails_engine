@@ -14,4 +14,8 @@ class Item < ActiveRecord::Base
   def self.most_items(params)
     InvoiceItem.successful.group(:item).sum("quantity").sort_by(&:last).last(params[:quantity].to_i).reverse.map(&:first)
   end
+
+  def best_day
+    invoice_items.successful.group("invoices.created_at").order("sum_quantity DESC").sum("quantity").first[0]
+  end
 end

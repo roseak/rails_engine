@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         member do
           get :invoices
           get :transactions
+          get :favorite_merchant
         end
       end
 
@@ -74,6 +75,7 @@ Rails.application.routes.draw do
         member do
           get :invoice_items
           get :merchant
+          get :best_day
         end
       end
 

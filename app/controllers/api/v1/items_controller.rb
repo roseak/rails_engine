@@ -37,6 +37,10 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.most_items(params)
   end
 
+  def best_day
+    respond_with best_day: Item.find(params[:id]).best_day
+  end
+
   private
 
   def search_params
