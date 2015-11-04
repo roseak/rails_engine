@@ -6,7 +6,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    respond_with Item.find_by(search_params)
+    respond_with Item.find(params[:id])
   end
 
   def find
@@ -22,7 +22,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def invoice_items
-    respond_with Item.find_by(search_params).invoice_items
+    respond_with InvoiceItem.where(item_id: params[:id])
   end
 
   def merchant
