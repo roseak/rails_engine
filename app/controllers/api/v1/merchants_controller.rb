@@ -29,6 +29,22 @@ class Api::V1::MerchantsController < ApplicationController
     respond_with Merchant.find_by(search_params).invoices
   end
 
+  def revenue
+    respond_with revenue: Merchant.find(params[:id]).find_revenue(params)
+  end
+
+  def total_merchants_revenue
+    respond_with total_revenue: Merchant.total_merchants_revenue(params)
+  end
+
+  def favorite_customer
+    respond_with Merchant.find(params[:id]).favorite_customer
+  end
+
+  def customers_with_pending_invoices
+    respond_with Merchant.find(params[:id]).customers_with_pending_invoices
+  end
+
   private
 
   def search_params
