@@ -20,6 +20,8 @@ Rails.application.routes.draw do
           get :find_all
           get :random
           get :revenue, action: :total_merchants_revenue
+          get :most_revenue
+          get :most_items
         end
 
         member do

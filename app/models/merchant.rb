@@ -18,6 +18,10 @@ class Merchant < ActiveRecord::Base
     invoices.successful.joins(:invoice_items).sum("quantity * unit_price")
   end
 
+  def items_sold
+    invoices.successful.joins(:invoice_items).sum("quantity")
+  end
+
   def revenue_with_date(date)
     invoices.successful.by_date(date).joins(:invoice_items).sum("quantity * unit_price")
   end
@@ -29,5 +33,13 @@ class Merchant < ActiveRecord::Base
 
   def customers_with_pending_invoices
     invoices.pending.map(&:customer).uniq
+  end
+
+  def self.most_revenue(params)
+    all.sort_by(&:revenue).reverse.first(params[:quantity].to_i)
+  end
+
+  def self.most_items(params)
+    all.sort_by(&:items_sold).reverse.first(params[:quantity].to_i)
   end
 end
