@@ -5,8 +5,4 @@ class Api::V1::CustomersControllerTest < ActionController::TestCase
     get :index, format: :json
     assert_response :success
   end
-
-  test "#show" do
-    get :show, format: :json
-  end
 end
