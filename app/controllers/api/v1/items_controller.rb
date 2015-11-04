@@ -29,6 +29,18 @@ class Api::V1::ItemsController < ApplicationController
     respond_with Item.find_by(search_params).merchant
   end
 
+  def most_revenue
+    respond_with Item.most_revenue(params)
+  end
+
+  def most_items
+    respond_with Item.most_items(params)
+  end
+
+  def best_day
+    respond_with best_day: Item.find(params[:id]).best_day
+  end
+
   private
 
   def search_params
