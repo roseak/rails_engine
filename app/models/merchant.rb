@@ -11,7 +11,8 @@ class Merchant < ActiveRecord::Base
   end
 
   def self.total_merchants_revenue(params)
-    Invoice.successful.by_date(params[:date]).joins(:invoice_items).sum("quantity * unit_price")
+    Invoice.successful.by_date(params[:date])
+            .joins(:invoice_items).sum("quantity * unit_price")
   end
 
   def revenue
@@ -23,11 +24,13 @@ class Merchant < ActiveRecord::Base
   end
 
   def revenue_with_date(date)
-    invoices.successful.by_date(date).joins(:invoice_items).sum("quantity * unit_price")
+    invoices.successful.by_date(date).joins(:invoice_items)
+            .sum("quantity * unit_price")
   end
 
   def favorite_customer
-    customer_id = invoices.successful.group(:customer_id).order("count_id desc").count("id").first[0]
+    customer_id = invoices.successful.group(:customer_id)
+                  .order("count_id desc").count("id").first[0]
     Customer.find(customer_id)
   end
 

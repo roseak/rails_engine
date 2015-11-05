@@ -8,11 +8,13 @@ class Item < ActiveRecord::Base
   end
 
   def self.most_revenue(params)
-    InvoiceItem.successful.group(:item).sum("quantity * unit_price").sort_by(&:last).last(params[:quantity].to_i).reverse.map(&:first)
+    InvoiceItem.successful.group(:item).sum("quantity * unit_price")
+               .sort_by(&:last).last(params[:quantity].to_i).reverse.map(&:first)
   end
 
   def self.most_items(params)
-    InvoiceItem.successful.group(:item).sum("quantity").sort_by(&:last).last(params[:quantity].to_i).reverse.map(&:first)
+    InvoiceItem.successful.group(:item).sum("quantity").sort_by(&:last)
+               .last(params[:quantity].to_i).reverse.map(&:first)
   end
 
   def best_day

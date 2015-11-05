@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :item do
-    name { Faker::Hipster.words(1) }
-    description { Faker::Hipster.sentence }
-    unit_price { Faker::Number.decimal(4, 2) }
+    name { Faker::Lorem.words(1) }
+    description { Faker::Lorem.sentence }
+    unit_price { Faker::Number.between(100, 100000) }
     merchant
   end
 end

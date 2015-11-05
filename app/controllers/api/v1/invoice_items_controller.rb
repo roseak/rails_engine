@@ -6,7 +6,7 @@ class Api::V1::InvoiceItemsController < ApplicationController
   end
 
   def show
-    respond_with InvoiceItem.find_by(search_params)
+    respond_with InvoiceItem.find(params[:id])
   end
 
   def find
@@ -32,6 +32,12 @@ class Api::V1::InvoiceItemsController < ApplicationController
   private
 
   def search_params
-    params.permit(:id, :item_id, :invoice_id, :unit_price, :quantity, :created_at, :updated_at)
+    params.permit(:id,
+                  :item_id,
+                  :invoice_id,
+                  :unit_price,
+                  :quantity,
+                  :created_at,
+                  :updated_at)
   end
 end
