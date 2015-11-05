@@ -3,11 +3,13 @@ SimpleCov.start('rails')
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require 'minitest/reporters'
+require 'minitest/pride'
 require 'factory_girl_rails'
-Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
-  fixtures :all
   include FactoryGirl::Syntax::Methods
+
+  def json_response
+    JSON.parse(response.body)
+  end
 end
