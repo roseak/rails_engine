@@ -41,7 +41,7 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
   test "#find_all returns all instances of an invoice item based on the query" do
     invoice_item = create(:invoice_item, quantity: 8)
     create(:invoice_item, quantity: 8)
-    create(:invoice_item)
+    create(:invoice_item, quantity: 2)
 
     get :find_all, quantity: invoice_item.quantity, format: :json
 
@@ -62,7 +62,7 @@ class Api::V1::InvoiceItemsControllerTest < ActionController::TestCase
     end
 
     assert_response :success
-    assert same_instance <= 7
+    assert same_instance <= 8
   end
 
   test "#invoice returns the invoice related to the specific invoice item" do

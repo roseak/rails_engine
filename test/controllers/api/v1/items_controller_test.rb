@@ -41,7 +41,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
   test "#find_all returns all instances of an item based on the query" do
     item = create(:item, name: "apple")
     create(:item, name: "apple")
-    create(:item)
+    create(:item, name: "banana")
 
     get :find_all, name: item.name, format: :json
 
@@ -62,7 +62,7 @@ class Api::V1::ItemsControllerTest < ActionController::TestCase
     end
 
     assert_response :success
-    assert same_instance <= 7
+    assert same_instance <= 8
   end
 
   test "#invoice_items returns all invoice items connected to item" do

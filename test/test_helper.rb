@@ -12,4 +12,16 @@ class ActiveSupport::TestCase
   def json_response
     JSON.parse(response.body)
   end
+
+  def business_merchants_setup
+    merchant = create(:merchant)
+    invoice1 = create(:invoice, merchant_id: merchant.id)
+    invoice2 = create(:invoice, merchant_id: merchant.id)
+    create(:transaction, invoice_id: invoice1.id)
+    create(:transaction, invoice_id: invoice2.id)
+    create(:invoice_item, invoice_id: invoice1.id)
+    create(:invoice_item, invoice_id: invoice1.id)
+    create(:invoice_item, invoice_id: invoice2.id)
+    merchant
+  end
 end
