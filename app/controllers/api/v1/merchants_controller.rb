@@ -6,7 +6,7 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def show
-    respond_with Merchant.find_by(search_params)
+    respond_with Merchant.find(params[:id])
   end
 
   def find

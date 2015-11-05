@@ -6,7 +6,7 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def show
-    respond_with Customer.find_by(search_params)
+    respond_with Customer.find(params[:id])
   end
 
   def find
